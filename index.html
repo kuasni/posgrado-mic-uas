@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posgrado en Ingeniería de la Construcción | UAS</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Roboto', sans-serif; }
+        h1, h2, h3, h4, .font-heading { font-family: 'Montserrat', sans-serif; }
+        
+        /* Colores Institucionales */
+        .bg-uas-blue { background-color: #003B5C; }
+        .text-uas-blue { color: #003B5C; }
+        .bg-uas-gold { background-color: #D4AF37; }
+        .text-uas-gold { color: #D4AF37; }
+        .hover-uas-gold:hover { background-color: #C19B20; }
+        
+        /* Ejes Curriculares */
+        .border-eje-basico { border-color: #2563EB; }
+        .bg-eje-basico { background-color: #EFF6FF; }
+        .text-eje-basico { color: #2563EB; }
+
+        .border-eje-investigacion { border-color: #16A34A; }
+        .bg-eje-investigacion { background-color: #F0FDF4; }
+        .text-eje-investigacion { color: #16A34A; }
+
+        .border-eje-profesional { border-color: #F97316; }
+        .bg-eje-profesional { background-color: #FFF7ED; }
+        .text-eje-profesional { color: #F97316; }
+
+        /* Efecto Hero */
+        .hero-overlay {
+            background: linear-gradient(rgba(0, 59, 92, 0.85), rgba(0, 59, 92, 0.6));
+        }
+
+        /* Animaciones de Transición de Página */
+        .page-transition {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos de Tabs internas */
+        .tab-btn.active {
+            border-bottom: 3px solid #003B5C;
+            color: #003B5C;
+            font-weight: 700;
+            background-color: rgba(0, 59, 92, 0.05);
+        }
+        .tab-btn {
+            border-bottom: 3px solid transparent;
+            color: #6B7280;
+        }
+        .tab-btn:hover {
+            color: #003B5C;
+        }
+
+        /* Estilo Nav Activo */
+        .nav-link.active {
+            color: #003B5C;
+            font-weight: 700;
+        }
+
+        /* Scrollbar personalizado para el modal */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #ccc; 
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #aaa; 
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- 1. ENCABEZADO (Sticky Header) -->
+    <nav class="sticky top-0 z-50 bg-white shadow-lg" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                
+                <!-- Logos (Clickeable lleva al inicio) -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+                    <div class="flex items-center gap-2 group">
+                        <div class="h-12 w-12 bg-white rounded-full flex items-center justify-center text-uas-blue font-bold text-xs shadow-md group-hover:shadow-lg transition overflow-hidden">
+                            <img src="uaslogo.png" alt="Logo UAS" class="h-10 w-10 object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/2/28/Escudo_UAS_Buelna.png';">
+                        </div>
+                        <div class="hidden md:block h-10 w-px bg-gray-300 mx-2"></div>
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold text-gray-900 leading-tight">POSGRADO EN INGENIERÍA</span>
+                            <span class="text-sm font-bold text-uas-blue leading-tight group-hover:text-uas-gold transition">DE LA CONSTRUCCIÓN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden lg:flex space-x-6 items-center">
+                    <button onclick="showPage('home')" id="nav-home" class="nav-link active text-gray-700 hover:text-uas-blue font-medium transition text-sm lg:text-base">Inicio</button>
+                    <button onclick="showPage('maestria')" id="nav-maestria" class="nav-link text-gray-700 hover:text-uas-blue font-medium transition text-sm lg:text-base">Maestría</button>
+                    <button onclick="showPage('doctorado')" id="nav-doctorado" class="nav-link text-gray-700 hover:text-uas-blue font-medium transition text-sm lg:text-base">Doctorado</button>
+                    <button onclick="showPage('profesores')" id="nav-profesores" class="nav-link text-gray-700 hover:text-uas-blue font-medium transition text-sm lg:text-base">Profesores</button>
+                    <button onclick="showPage('vinculacion')" id="nav-vinculacion" class="nav-link text-gray-700 hover:text-uas-blue font-medium transition text-sm lg:text-base">Vinculación</button>
+                    <a href="#contacto" class="px-4 py-2 rounded-md bg-uas-blue text-white hover:bg-opacity-90 transition text-sm lg:text-base">Contacto</a>
+                </div>
+
+                <!-- Botón Móvil -->
+                <div class="lg:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="flex items-center gap-2 text-gray-600 hover:text-uas-blue p-2 border border-gray-200 rounded-md">
+                        <span class="text-sm font-bold uppercase tracking-wide">Menú</span>
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <button onclick="showPage('home')" class="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 font-medium">Inicio</button>
+                <button onclick="showPage('maestria')" class="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 font-medium">Maestría</button>
+                <button onclick="showPage('doctorado')" class="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 font-medium">Doctorado</button>
+                <button onclick="showPage('profesores')" class="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 font-medium">Profesores</button>
+                <button onclick="showPage('vinculacion')" class="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 font-medium">Vinculación</button>
+                <a href="#contacto" class="block w-full text-left px-3 py-2 text-gray-700 hover:bg-gray-50 font-medium">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======================= VISTA: INICIO ======================= -->
+<div id="page-home" class="page-content page-transition">
+        <header class="relative bg-gray-900 h-[650px] flex items-center justify-center text-center px-4">
+            
+            <div class="absolute top-3 right-6 z-20 bg-white/90 p-2 rounded-lg shadow-md">
+                <img src="secihti.png" alt="Logo SECIHTI" class="h-5 md:h-7 w-auto object-contain" onerror="this.style.display='none'">
+            </div>
+			
+           <div class="absolute inset-0 overflow-hidden">
+                <img src="iniciogruas.jpg" alt="Ingeniería y Tecnología" class="w-full h-full object-cover">
+                <div class="absolute inset-0 hero-overlay"></div>
+                <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9IkQwIDQwaDQwVjBIMHY0MHptMS0xdi0yaDJ2MmgtMnptMi0ydjIyaDJ2LTJoLTJ6bS0yLTJWMmgzOHYzNkgxVjN6IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMSIvPjwvZz48L3N2Zz4=')]"></div>
+            </div>
+			
+            <div class="relative z-10 max-w-5xl mx-auto animate-fade-in-up">
+                <h1 class="font-heading text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg leading-tight">
+                    Posgrado en Ingeniería <br>
+                    <span class="text-uas-gold">de la Construcción</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-white mb-4 font-light italic">
+                    "Construye tu conocimiento, diseña tu futuro."
+                </p>
+
+                <p class="text-lg text-gray-300 mb-10 font-normal max-w-3xl mx-auto">
+                    Universidad Autónoma de Sinaloa. Programas de excelencia académica con reconocimiento nacional.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <button class="bg-uas-gold text-uas-blue font-bold py-4 px-10 rounded-full shadow-lg hover:bg-yellow-400 hover:scale-105 transform transition duration-300 text-lg" onclick="alert('Descargando Convocatoria 2026...')">
+                        Ver Convocatoria 2026
+                    </button>
+                    <div class="flex gap-4 justify-center sm:justify-start">
+                        <button onclick="showPage('maestria')" class="text-white hover:text-uas-gold underline underline-offset-4 text-sm font-medium">Ir a Maestría</button>
+                        <span class="text-gray-400">|</span>
+                        <button onclick="showPage('doctorado')" class="text-white hover:text-green-400 underline underline-offset-4 text-sm font-medium">Ir a Doctorado</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 3. INTRODUCCIÓN AL POSGRADO -->
+        <section class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <span class="text-uas-blue font-bold tracking-wider uppercase text-sm mb-2 block">Nuestra Oferta</span>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+                    Bienvenidos al Posgrado en <br>Ingeniería de la Construcción
+                </h2>
+                <div class="w-24 h-1 bg-uas-gold mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 leading-relaxed">
+                    Descubre los grandes beneficios de estudiar en nuestros programas de Maestría y Doctorado. Formamos investigadores y profesionales de alto nivel capaces de transformar la industria mediante la innovación y el rigor científico.
+                </p>
+            </div>
+        </section>
+
+
+<!-- 4. POR QUË ESTUDIAR CON NOSOTROS-->
+<section class="py-20 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- SECCIÓN 1: ¿POR QUÉ ESTUDIAR CON NOSOTROS? -->
+        <div class="relative rounded-3xl overflow-hidden mb-16 shadow-xl group border border-gray-100">
+            <img src="fondo_nosotros.jpg" class="absolute inset-0 w-full h-full object-cover grayscale opacity-40" alt="Fondo Beneficios" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop'">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+            
+            <div class="relative z-10 p-8 md:p-12">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">¿Por qué estudiar con nosotros?</h2>
+                <div class="w-12 h-1 bg-uas-gold mb-6"></div> 
+                
+                <!-- BOTÓN TIKTOK MOVIDO AQUÍ -->
+                <div class="mb-8">
+                    <a href="https://www.tiktok.com/@ingenieriauascln/video/7343821193268530438" target="_blank" class="inline-flex items-center gap-2 bg-white text-gray-900 px-5 py-2.5 rounded-full text-xs font-bold hover:bg-uas-gold hover:text-uas-blue transition shadow-lg">
+                        <i class="fab fa-tiktok text-base"></i>
+                        VER EN TIKTOK
+                    </a>
+                </div>
+
+                <button onclick="document.getElementById('carrusel-1').scrollBy({left: -400, behavior: 'smooth'})" class="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white text-white hover:text-gray-900 rounded-full items-center justify-center transition z-30 border border-white/20">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="document.getElementById('carrusel-1').scrollBy({left: 400, behavior: 'smooth'})" class="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white text-white hover:text-gray-900 rounded-full items-center justify-center transition z-30 border border-white/20">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div id="carrusel-1" class="flex overflow-x-auto gap-6 pb-8 custom-scrollbar snap-x scroll-smooth text-left">
+                    
+                    <div class="relative min-w-[300px] md:min-w-[350px] overflow-hidden rounded-2xl border border-white/10 snap-center group/card">
+                        <img src="competencias.jpg" class="absolute inset-0 w-full h-full object-cover grayscale transition duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105" alt="Competencias">
+                        <div class="absolute inset-0 bg-gray-900/60 group-hover/card:bg-gray-900/40 transition"></div>
+                        <div class="relative p-8">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-uas-gold mb-6 border border-white/20">
+                                <i class="fas fa-brain text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Competencias de Vanguardia</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Dominio de diseño sísmico moderno, análisis de confiabilidad y optimización avanzada.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative min-w-[300px] md:min-w-[350px] overflow-hidden rounded-2xl border border-white/10 snap-center group/card">
+                        <img src="innovacion.jpg" class="absolute inset-0 w-full h-full object-cover grayscale transition duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105" alt="Innovación">
+                        <div class="absolute inset-0 bg-gray-900/60 group-hover/card:bg-gray-900/40 transition"></div>
+                        <div class="relative p-8">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-uas-gold mb-6 border border-white/20">
+                                <i class="fas fa-lightbulb text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Innovación Constante</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Integración de Inteligencia Artificial aplicada a los procesos de construcción civil.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative min-w-[300px] md:min-w-[350px] overflow-hidden rounded-2xl border border-white/10 snap-center group/card">
+                        <img src="laboratorios.jpg" class="absolute inset-0 w-full h-full object-cover grayscale transition duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105" alt="Laboratorios">
+                        <div class="absolute inset-0 bg-gray-900/60 group-hover/card:bg-gray-900/40 transition"></div>
+                        <div class="relative p-8">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-uas-gold mb-6 border border-white/20">
+                                <i class="fas fa-microscope text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Laboratorios Especializados</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Software de vanguardia y laboratorios físicos para experimentación de alto nivel científico.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative min-w-[300px] md:min-w-[350px] overflow-hidden rounded-2xl border border-white/10 snap-center group/card">
+                        <img src="flexibilidad.jpg" class="absolute inset-0 w-full h-full object-cover grayscale transition duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105" alt="Flexibilidad">
+                        <div class="absolute inset-0 bg-gray-900/60 group-hover/card:bg-gray-900/40 transition"></div>
+                        <div class="relative p-8">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-uas-gold mb-6 border border-white/20">
+                                <i class="fas fa-laptop-house text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Flexibilidad Curricular</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Esquema académico diseñado para integrarse con la práctica profesional activa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: NETWORKING PROFESIONAL -->
+        <div class="relative rounded-3xl overflow-hidden shadow-xl group border border-gray-100">
+            <img src="fondo_networking.jpg" class="absolute inset-0 w-full h-full object-cover grayscale opacity-40" alt="Fondo Networking" onerror="this.src='https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2000&auto=format&fit=crop'">
+            <div class="absolute inset-0 bg-gradient-to-l from-gray-900 via-gray-900/90 to-gray-900/60"></div>
+            
+            <div class="relative z-10 p-8 md:p-12 text-right">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">Networking Profesional</h2>
+                <div class="w-12 h-1 bg-uas-gold ml-auto mb-8"></div>
+                
+                <button onclick="document.getElementById('carrusel-2').scrollBy({left: -400, behavior: 'smooth'})" class="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white text-white hover:text-gray-900 rounded-full items-center justify-center transition z-30 border border-white/20">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="document.getElementById('carrusel-2').scrollBy({left: 400, behavior: 'smooth'})" class="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white text-white hover:text-gray-900 rounded-full items-center justify-center transition z-30 border border-white/20">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div id="carrusel-2" class="flex overflow-x-auto gap-6 pb-8 custom-scrollbar snap-x scroll-smooth">
+                    
+                    <div class="relative min-w-[300px] md:min-w-[350px] overflow-hidden rounded-2xl border border-white/10 snap-center group/card text-left">
+                        <img src="alianzas.jpg" class="absolute inset-0 w-full h-full object-cover grayscale transition duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105" alt="Alianzas">
+                        <div class="absolute inset-0 bg-gray-900/60 group-hover/card:bg-gray-900/40 transition"></div>
+                        <div class="relative p-8">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-uas-gold mb-6 border border-white/20">
+                                <i class="fas fa-handshake text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Alianzas Estratégicas</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Vínculos institucionales con las firmas líderes del sector para proyectos de alto impacto.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative min-w-[300px] md:min-w-[350px] overflow-hidden rounded-2xl border border-white/10 snap-center group/card text-left">
+                        <img src="internacional.jpg" class="absolute inset-0 w-full h-full object-cover grayscale transition duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105" alt="Internacionalización">
+                        <div class="absolute inset-0 bg-gray-900/60 group-hover/card:bg-gray-900/40 transition"></div>
+                        <div class="relative p-8">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-uas-gold mb-6 border border-white/20">
+                                <i class="fas fa-globe text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Presencia Internacional</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Colaboración activa con centros de investigación en Norteamérica, Europa y Asia.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative min-w-[300px] md:min-w-[350px] overflow-hidden rounded-2xl border border-white/10 snap-center group/card text-left">
+                        <img src="egresados.jpg" class="absolute inset-0 w-full h-full object-cover grayscale transition duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105" alt="Egresados">
+                        <div class="absolute inset-0 bg-gray-900/60 group-hover/card:bg-gray-900/40 transition"></div>
+                        <div class="relative p-8 h-full flex flex-col justify-between z-10">
+                            <div>
+                                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-uas-gold mb-6 border border-white/20">
+                                    <i class="fas fa-user-check text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3">Egresados de Excelencia</h3>
+                                <p class="text-gray-300 text-sm leading-relaxed mb-6">Nuestra red de egresados lidera la innovación en ingeniería a nivel nacional.</p>
+                            </div>
+                            <!-- BOTÓN ELIMINADO DE AQUÍ -->
+                        </div>
+                    </div>
+
+                    <div class="relative min-w-[300px] md:min-w-[350px] overflow-hidden rounded-2xl border border-white/10 snap-center group/card text-left">
+                        <img src="comunidad.jpg" class="absolute inset-0 w-full h-full object-cover grayscale transition duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105" alt="Comunidad">
+                        <div class="absolute inset-0 bg-gray-900/60 group-hover/card:bg-gray-900/40 transition"></div>
+                        <div class="relative p-8">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-uas-gold mb-6 border border-white/20">
+                                <i class="fas fa-users text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Comunidad Científica</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Acceso permanente a una red de intercambio de conocimiento técnico y científico.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+		
+
+        <!-- 5. SELLO DE CALIDAD (Destacado) -->
+ <section class="bg-uas-blue py-16 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-blue-400/5 blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+            
+            <div class="lg:w-1/4 flex justify-center lg:justify-start">
+                <img src="posgradoscalidad.png" alt="SNP Conahcyt" 
+                     class="h-20 w-auto object-contain brightness-0 invert"
+                     onerror="this.src='https://via.placeholder.com/150x60?text=SNP+CONAHCYT'">
+            </div>
+
+            <div class="lg:w-2/4 text-center text-white">
+                <span class="inline-block text-uas-gold text-sm font-bold tracking-[0.3em] uppercase mb-4">Reconocimiento Oficial</span>
+                <h3 class="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">Excelencia Académica</h3>
+                <p class="text-lg text-blue-100/90 font-light leading-relaxed mb-8 max-w-lg mx-auto">
+                    Programas integrados al <strong class="font-semibold text-white">Sistema Nacional de Posgrados (SNP)</strong> de la SECIHTI.
+                </p>
+                
+                <div class="inline-flex items-center gap-3 bg-white/10 px-6 py-3 rounded-full border border-white/20">
+                    <div class="bg-uas-gold p-1.5 rounded-full">
+                        <i class="fas fa-graduation-cap text-uas-blue text-xs"></i>
+                    </div>
+                    <span class="uppercase tracking-widest text-xs font-bold text-white">Posibilidad de Becas</span>
+                </div>
+            </div>
+
+            <div class="lg:w-1/4 flex items-center justify-center lg:justify-end gap-8">
+                <img src="uaslogo.png" alt="Logo UAS" 
+                     class="h-16 w-auto object-contain"
+                     onerror="this.src='https://via.placeholder.com/80x80?text=UAS'">
+                
+                <div class="w-px h-10 bg-white/20"></div> 
+                
+                <img src="ficlogo.png" alt="Logo FIC" 
+                     class="h-16 w-auto object-contain"
+                     onerror="this.src='https://via.placeholder.com/80x80?text=FIC'">
+            </div>
+
+        </div>
+    </div>
+</section>
+</div>
+		
+    <!-- ======================= VISTA: MAESTRÍA (Mantengo contenido anterior) ======================= -->
+    <div id="page-maestria" class="page-content page-transition hidden">
+        <!-- Header Maestría -->
+        <div class="bg-uas-blue text-white py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <a href="#" onclick="showPage('home')" class="text-gray-300 hover:text-white text-sm mb-4 inline-block"><i class="fas fa-arrow-left mr-2"></i> Volver al Inicio</a>
+               <h1 class="font-heading text-3xl md:text-5xl font-bold">
+                     <span class="text-uas-gold">Maestría</span> en Ingeniería de la Construcción
+                     </h1>
+            </div>
+        </div>
+
+        <section class="py-12 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Navegación de Pestañas Internas -->
+                <div class="flex space-x-2 mb-8 border-b border-gray-300 pb-1 overflow-x-auto">
+                    <button onclick="openTab(event, 'mic-general', 'mic')" class="tab-btn active px-4 py-2 font-medium transition-colors" id="default-mic">General</button>
+                    <button onclick="openTab(event, 'mic-plan', 'mic')" class="tab-btn px-4 py-2 font-medium transition-colors">Plan de Estudios</button>
+                    <button onclick="openTab(event, 'mic-admision', 'mic')" class="tab-btn px-4 py-2 font-medium transition-colors">Admisión</button>
+                </div>
+
+                <!-- CONTENIDO PESTAÑAS MAESTRÍA -->
+                <div id="mic-content" class="min-h-[400px]">
+                    <!-- Tab: General MIC -->
+                    <div id="mic-general" class="tab-content block">
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                            <div class="lg:col-span-2 space-y-6">
+                                <p class="text-gray-600 text-lg">Programa diseñado para profesionales en activo. Combinamos teoría avanzada y práctica aplicada.</p>
+                                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-uas-blue">
+                                    <h4 class="font-bold text-gray-900 mb-2">Misión</h4>
+                                    <p class="text-sm text-gray-600">Formar maestros capaces de innovar y aplicar conocimientos para resolver problemas de infraestructura con responsabilidad social.</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-uas-gold">
+                                    <h4 class="font-bold text-gray-900 mb-2">Visión</h4>
+                                    <p class="text-sm text-gray-600">Ser un programa referente nacional por su calidad académica y pertinencia en el sector productivo.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 h-fit">
+                                <h3 class="font-bold text-2xl text-uas-blue mb-4 border-b pb-2">Datos Clave</h3>
+                                <ul class="space-y-4 text-lg">
+                                    <li class="flex items-center"><i class="fas fa-clock text-uas-gold w-6"></i> <span>2 Años (4 Semestres)</span></li>
+                                    <li class="flex items-center"><i class="fas fa-briefcase text-uas-gold w-6"></i> <span>Modalidad Presencial</span></li>
+                                    <li class="flex items-center"><i class="fas fa-language text-uas-gold w-6"></i> <span>Inglés Técnico Requerido</span></li>
+                                </ul>
+                                <a href="mailto:mconstruccion@uas.edu.mx" class="mt-6 block w-full bg-uas-blue text-white text-center py-2 rounded hover:bg-opacity-90 transition">Contactar</a>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 pt-8">
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h4 class="flex items-center text-lg font-bold text-gray-800 mb-3"><i class="fas fa-user-graduate text-uas-blue mr-3 bg-blue-100 p-2 rounded-full"></i> Perfil de Ingreso</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i> Profesionales de Ingeniería Civil o carrera afín.</li>
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i> Interés en innovación tecnológica y administración.</li>
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i> Capacidad de análisis y síntesis.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <h4 class="flex items-center text-lg font-bold text-gray-800 mb-3"><i class="fas fa-briefcase text-uas-gold mr-3 bg-yellow-100 p-2 rounded-full"></i> Perfil de Egreso</h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li><i class="fas fa-star text-uas-gold mr-2"></i> Gestión de proyectos complejos.</li>
+                                    <li><i class="fas fa-star text-uas-gold mr-2"></i> Dominio de normativas y herramientas digitales.</li>
+                                    <li><i class="fas fa-star text-uas-gold mr-2"></i> Ética y responsabilidad social.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tab: Plan MIC -->
+                    <div id="mic-plan" class="tab-content hidden">
+                        <!-- Mismo contenido plan MIC -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Semestre 1 -->
+                            <div class="space-y-3">
+                                <h4 class="font-bold text-gray-800 text-center border-b pb-2">Semestre I</h4>
+                                <div class="p-3 bg-white border-l-4 border-eje-basico shadow-sm rounded"><span class="text-xs font-bold text-eje-basico block">BÁSICO</span>Factibilidad de proyectos</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-basico shadow-sm rounded"><span class="text-xs font-bold text-eje-basico block">BÁSICO</span>Admin. empresas constructoras</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-profesional shadow-sm rounded"><span class="text-xs font-bold text-eje-profesional block">PROFESIONAL</span>Presupuestación de obras</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-profesional shadow-sm rounded"><span class="text-xs font-bold text-eje-profesional block">PROFESIONAL</span>Dirección de proyectos</div>
+                            </div>
+                            <!-- Semestre 2 -->
+                            <div class="space-y-3">
+                                <h4 class="font-bold text-gray-800 text-center border-b pb-2">Semestre II</h4>
+                                <div class="p-3 bg-white border-l-4 border-eje-basico shadow-sm rounded"><span class="text-xs font-bold text-eje-basico block">BÁSICO</span>Normatividad materiales</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-xs font-bold text-eje-investigacion block">INVESTIGACIÓN</span>Metodología de la investigación</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-profesional shadow-sm rounded border-dashed"><span class="text-xs font-bold text-eje-profesional block">OPTATIVA</span>Especialización I</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-profesional shadow-sm rounded border-dashed"><span class="text-xs font-bold text-eje-profesional block">OPTATIVA</span>Especialización II</div>
+                            </div>
+                            <!-- Semestre 3 -->
+                            <div class="space-y-3">
+                                <h4 class="font-bold text-gray-800 text-center border-b pb-2">Semestre III</h4>
+                                <div class="p-3 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-xs font-bold text-eje-investigacion block">INVESTIGACIÓN</span>Trabajo de tesis I</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-xs font-bold text-eje-investigacion block">INVESTIGACIÓN</span>Seminario de tesis I</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-profesional shadow-sm rounded"><span class="text-xs font-bold text-eje-profesional block">PRÁCTICA</span>Estancia profesional</div>
+                            </div>
+                            <!-- Semestre 4 -->
+                            <div class="space-y-3">
+                                <h4 class="font-bold text-gray-800 text-center border-b pb-2">Semestre IV</h4>
+                                <div class="p-3 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-xs font-bold text-eje-investigacion block">INVESTIGACIÓN</span>Trabajo de tesis II</div>
+                                <div class="p-3 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-xs font-bold text-eje-investigacion block">INVESTIGACIÓN</span>Seminario de tesis II</div>
+                                <div class="p-3 bg-uas-blue text-white shadow-sm rounded text-center font-bold flex items-center justify-center h-16">Examen de Grado</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Admisión MIC (NUEVO DISEÑO CON REQUISITOS) -->
+                    <div id="mic-admision" class="tab-content hidden py-8">
+                        <div class="text-center mb-10">
+                            <h3 class="font-heading text-2xl font-bold text-gray-900">Perfil de Ingreso</h3>
+                            <div class="w-16 h-1 bg-uas-gold mx-auto mt-2"></div>
+                            <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Buscamos profesionales comprometidos con la excelencia.</p>
+                        </div>
+                        
+                        <!-- Tarjetas de Perfil -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
+                            <div class="bg-white rounded-xl shadow-lg border-t-4 border-blue-500 p-6">
+                                <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center"><i class="fas fa-certificate text-blue-600 mr-2"></i> Requisitos</h4>
+                                <ul class="space-y-2 text-sm text-gray-600"><li>Título Licenciatura</li><li>Examen de Admisión</li><li>Promedio 8.0</li></ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg border-t-4 border-indigo-500 p-6">
+                                <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center"><i class="fas fa-brain text-indigo-600 mr-2"></i> Aptitudes</h4>
+                                <ul class="space-y-2 text-sm text-gray-600"><li>Habilidad para la Innovación Tecnológica</li><li>Razonamiento Lógico</li><li>Capacidad de Análisis y Síntesis</li></ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg border-t-4 border-green-500 p-6">
+                                <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center"><i class="fas fa-heart text-green-600 mr-2"></i> Intereses</h4>
+                                <ul class="space-y-2 text-sm text-gray-600"><li>Solución Sustentable</li><li>Pasión por la Digitalización y la IA</li><li>Sostenibilidad y Resiliencia</li></ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg border-t-4 border-orange-500 p-6">
+                                <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center"><i class="fas fa-star text-orange-500 mr-2"></i> Actitudes</h4>
+                                <ul class="space-y-2 text-sm text-gray-600"><li>Innovación</li><li>Liderazgo</li><li>Trabajo Equipo</li></ul>
+                            </div>
+                        </div>
+
+                        <!-- Sección Detallada de Requisitos y Documentación -->
+                        <div class="bg-gray-50 rounded-xl p-8 border border-gray-200 shadow-sm">
+                            <h3 class="font-heading text-xl font-bold text-uas-blue mb-6 border-b pb-2">Proceso y Requisitos de Admisión</h3>
+                            
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-check-double text-green-500 mr-2"></i> Criterios Académicos</h4>
+                                    <ul class="space-y-3 text-sm text-gray-700">
+                                        <li class="flex items-start"><span class="mr-2 text-blue-500">•</span> Tener grado de licenciatura en ingeniería civil o carrera afín.</li>
+                                        <li class="flex items-start"><span class="mr-2 text-blue-500">•</span> Promedio mínimo de 8.0 de la licenciatura.</li>
+                                        <li class="flex items-start"><span class="mr-2 text-blue-500">•</span> Acreditar TOEFL ≥ 450 puntos (Centro de Estudios de Idiomas UAS).</li>
+                                        <li class="flex items-start"><span class="mr-2 text-blue-500">•</span> Aprobar exámenes de admisión: física, matemáticas y construcción.</li>
+                                        <li class="flex items-start"><span class="mr-2 text-blue-500">•</span> Aprobar entrevista con el comité académico.</li>
+                                        <li class="flex items-start"><span class="mr-2 text-blue-500">•</span> Aprobar satisfactoriamente el examen psicométrico.</li>
+                                    </ul>
+                                </div>
+
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-4 flex items-center"><i class="fas fa-folder-open text-orange-500 mr-2"></i> Documentación para Preinscripción</h4>
+                                    <div class="h-64 overflow-y-auto pr-2 custom-scrollbar">
+                                        <ol class="space-y-2 text-sm text-gray-600 list-decimal list-inside">
+                                            <li>Solicitud de admisión y comprobantes de pago.</li>
+                                            <li>Título de licenciatura (o constancia de trámite).</li>
+                                            <li>Cédula profesional.</li>
+                                            <li>Certificado de estudios y carta de promedio.</li>
+                                            <li>Currículum vitae.</li>
+                                            <li>Carta de exposición de motivos.</li>
+                                            <li>Dos cartas de recomendación académicas (min. Maestría).</li>
+                                            <li>Carta compromiso de dedicación (max 2.5 años).</li>
+                                            <li>Constancia TOEFL (< 1 año) o carta compromiso.</li>
+                                            <li>Acta de nacimiento.</li>
+                                            <li>Comprobante de domicilio.</li>
+                                            <li>Identificación con fotografía.</li>
+                                            <li>CURP (extranjeros ver nota).</li>
+                                            <li>Constancia de equivalencia promedio (si base no es 10/100).</li>
+                                            <li>Constancia de dominio español (no nativos).</li>
+                                            <li>Traducción de documentos (extranjeros).</li>
+                                        </ol>
+                                    </div>
+                                    <p class="text-xs text-gray-400 mt-2 italic">* Estudiantes extranjeros: iniciar trámites migratorios 6 meses antes.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 text-center flex flex-col md:flex-row justify-center gap-4">
+                            <a href="#" class="inline-flex items-center justify-center px-8 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition" onclick="alert('Descargando PDF Convocatoria 2026...')"><i class="fas fa-file-pdf mr-2"></i> Convocatoria 2026</a>
+                            <a href="mailto:mconstruccion@uas.edu.mx" class="inline-flex items-center justify-center px-8 py-3 bg-uas-blue text-white font-bold rounded-full shadow-lg hover:bg-opacity-90 transition"><i class="fas fa-envelope mr-2"></i> Solicitar Información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ======================= VISTA: DOCTORADO (Mantengo contenido anterior) ======================= -->
+    <div id="page-doctorado" class="page-content page-transition hidden">
+       <div class="bg-uas-blue text-white py-12">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-green-500 rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <a href="#" onclick="showPage('home')" class="text-gray-400 hover:text-white text-sm mb-4 inline-block"><i class="fas fa-arrow-left mr-2"></i> Volver al Inicio</a>
+                <h1 class="font-heading text-3xl md:text-5xl font-bold">
+                <span class="text-uas-gold">Doctorado</span> en Ingeniería de la Construcción </h1>      
+            </div>
+        </div>
+        <section class="py-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Navegación Tabs Doctorado -->
+                <div class="flex space-x-2 mb-8 border-b border-gray-300 pb-1 overflow-x-auto">
+                    <button onclick="openTab(event, 'doc-general', 'doc')" class="tab-btn active px-4 py-2 font-medium transition-colors" id="default-doc">General</button>
+                    <button onclick="openTab(event, 'doc-plan', 'doc')" class="tab-btn px-4 py-2 font-medium transition-colors">Plan de Estudios</button>
+                    <button onclick="openTab(event, 'doc-admision', 'doc')" class="tab-btn px-4 py-2 font-medium transition-colors">Admisión</button>
+                </div>
+                <!-- Contenido Tabs Doctorado -->
+                <div id="doc-content" class="min-h-[400px]">
+                    <div id="doc-general" class="tab-content block">
+                        <!-- Intro & Misión/Visión -->
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                            <div class="lg:col-span-2 space-y-6">
+                                <p class="text-gray-600 text-lg">Programa orientado a la generación de conocimiento original e innovador.</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                        <h4 class="font-bold text-gray-900 mb-2">Misión</h4>
+                                        <p class="text-sm text-gray-600">Formar investigadores con sólido rigor científico.</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                        <h4 class="font-bold text-gray-900 mb-2">Visión</h4>
+                                        <p class="text-sm text-gray-600">Consolidarse como un programa de excelencia internacional.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Sidebar Info -->
+                            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 h-fit">
+                                    <h3 class="font-bold text-2xl text-uas-blue mb-4 border-b pb-2">Datos Clave</h3>
+                                    <ul class="space-y-4 text-lg text-gray-700">
+                                    <li class="flex items-center">											
+									<li class="flex items-center"><i class="fas fa-clock text-uas-gold w-6"></i> <span>3 Años (6 Semestres)</span></li>
+                                    <li class="flex items-center"><i class="fas fa-briefcase text-uas-gold w-6"></i> <span>Modalidad Presencial</span></li>
+                                    <li class="flex items-center"><i class="fas fa-language text-uas-gold w-6"></i> <span>Escolarizada (Becas SECIHTI)</span></li>
+                                    
+                                </ul>
+                                <a href="mailto:dconstruccion@uas.edu.mx" class="mt-6 block w-full text-center text-white hover:text-uas-gold transition font-medium border border-white/20 rounded py-2">Contacto</a>
+                            </div>
+                        </div>
+
+                        <!-- Perfiles Doctorado (Restaurado) -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 pt-8">
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                <h4 class="flex items-center text-lg font-bold text-gray-800 mb-3">
+                                    <i class="fas fa-user-graduate text-green-600 mr-3 bg-green-100 p-2 rounded-full"></i> Perfil de Ingreso
+                                </h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i> Grado de Maestría en Ciencias o Ingeniería.</li>
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i> Experiencia probada en investigación (tesis/artículos).</li>
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i> Competencia lectora en idioma inglés.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                <h4 class="flex items-center text-lg font-bold text-gray-800 mb-3">
+                                    <i class="fas fa-award text-uas-blue mr-3 bg-blue-100 p-2 rounded-full"></i> Perfil de Egreso
+                                </h4>
+                                <ul class="text-sm text-gray-600 space-y-2">
+                                    <li><i class="fas fa-star text-uas-gold mr-2"></i> Investigador capaz de generar conocimiento original.</li>
+                                    <li><i class="fas fa-star text-uas-gold mr-2"></i> Dirección de grupos de investigación y docencia de alto nivel.</li>
+                                    <li><i class="fas fa-star text-uas-gold mr-2"></i> Producción científica en revistas de impacto internacional.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="doc-plan" class="tab-content hidden">
+                        <!-- PLAN DE ESTUDIOS DOCTORADO (6 SEMESTRES ACTUALIZADO) -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
+                            
+                            <!-- Semestre I -->
+                            <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                                <h5 class="font-bold text-center text-gray-700 mb-2 border-b pb-1 text-sm">Semestre I</h5>
+                                <div class="space-y-1.5">
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Trabajo de tesis I</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Seminario de tesis I</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Metodología Inv. Avanzada</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-basico shadow-sm rounded"><span class="text-[10px] font-bold text-eje-basico block">BAS</span><p class="text-xs leading-tight">Evaluación Proy. Sostenibles</p></div>
+                                </div>
+                            </div>
+
+                            <!-- Semestre II -->
+                            <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                                <h5 class="font-bold text-center text-gray-700 mb-2 border-b pb-1 text-sm">Semestre II</h5>
+                                <div class="space-y-1.5">
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Trabajo de tesis II</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Seminario de tesis II</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-profesional shadow-sm rounded border-dashed"><span class="text-[10px] font-bold text-eje-profesional block">OPT</span><p class="text-xs leading-tight">Optativa Esp. I</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-profesional shadow-sm rounded border-dashed"><span class="text-[10px] font-bold text-eje-profesional block">OPT</span><p class="text-xs leading-tight">Optativa Esp. II</p></div>
+                                </div>
+                            </div>
+
+                            <!-- Semestre III -->
+                            <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                                <h5 class="font-bold text-center text-gray-700 mb-2 border-b pb-1 text-sm">Semestre III</h5>
+                                <div class="space-y-1.5">
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Trabajo de tesis III</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Seminario de tesis III</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-profesional shadow-sm rounded border-dashed"><span class="text-[10px] font-bold text-eje-profesional block">OPT</span><p class="text-xs leading-tight">Optativa Esp. III</p></div>
+                                </div>
+                            </div>
+
+                            <!-- Semestre IV -->
+                            <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                                <h5 class="font-bold text-center text-gray-700 mb-2 border-b pb-1 text-sm">Semestre IV</h5>
+                                <div class="space-y-1.5">
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Trabajo de tesis IV</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Seminario de tesis IV</p></div>
+                                </div>
+                            </div>
+
+                            <!-- Semestre V -->
+                            <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                                <h5 class="font-bold text-center text-gray-700 mb-2 border-b pb-1 text-sm">Semestre V</h5>
+                                <div class="space-y-1.5">
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Trabajo de tesis V</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Seminario de tesis V</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Redacción Textos Científicos</p></div>
+                                </div>
+                            </div>
+
+                            <!-- Semestre VI -->
+                            <div class="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                                <h5 class="font-bold text-center text-gray-700 mb-2 border-b pb-1 text-sm">Semestre VI</h5>
+                                <div class="space-y-1.5">
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Trabajo de tesis VI</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-investigacion shadow-sm rounded"><span class="text-[10px] font-bold text-eje-investigacion block">INV</span><p class="text-xs leading-tight">Seminario de tesis VI</p></div>
+                                    <div class="p-1.5 bg-white border-l-4 border-eje-profesional shadow-sm rounded"><span class="text-[10px] font-bold text-eje-profesional block">PRO</span><p class="text-xs leading-tight">Estancia Profesional</p></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="doc-admision" class="tab-content hidden py-8">
+                        <div class="text-center mb-10">
+                            <h3 class="font-heading text-2xl font-bold text-gray-900">Perfil de Ingreso</h3>
+                            <div class="w-16 h-1 bg-green-500 mx-auto mt-2"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-12">
+                            <div class="bg-white rounded-xl shadow-lg border-t-4 border-green-600 p-6">
+                                <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center"><i class="fas fa-graduation-cap text-green-600 mr-2"></i> Requisitos</h4>
+                                <ul class="space-y-2 text-sm text-gray-600"><li>Maestría en Ciencias/Ingeniería.</li><li>Promedio 8.0</li></ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg border-t-4 border-indigo-500 p-6">
+                                <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center"><i class="fas fa-brain text-indigo-600 mr-2"></i> Aptitudes</h4>
+                                <ul class="space-y-2 text-sm text-gray-600"><li>Autonomía y Rigor Científico</li><li>Pensamiento Crítico</li></ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg border-t-4 border-cyan-600 p-6">
+                                <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center"><i class="fas fa-microscope text-cyan-600 mr-2"></i> Intereses</h4>
+                                <ul class="space-y-2 text-sm text-gray-600"><li>Trascender en Ingeniería</li><li>Investigación</li></ul>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg border-t-4 border-orange-500 p-6">
+                                <h4 class="font-bold text-gray-800 text-lg mb-3 flex items-center"><i class="fas fa-star text-orange-500 mr-2"></i> Actitudes</h4>
+                                <ul class="space-y-2 text-sm text-gray-600"><li>Innovación</li><li>Liderazgo</li></ul>
+                            </div>
+                        </div>
+
+                        <!-- Requisitos de Aceptación (NUEVO) -->
+                        <div class="bg-green-50 rounded-xl p-8 border border-green-200 shadow-sm mb-8">
+                            <h3 class="font-heading text-xl font-bold text-green-800 mb-6 border-b border-green-200 pb-2">Requisitos de Aceptación al Programa</h3>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> <span>Acreditar <strong>TOEFL ≥ 450</strong> puntos (Institución certificada).</span></li>
+                             <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i><span>Aprobar examen de admisión: <strong>Defensa de Anteproyecto de Investigación</strong>.</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> <span>Aprobar entrevista con el Comité Académico.</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> <span>Aprobar satisfactoriamente el examen psicométrico.</span></li>
+                                <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i> <span>Demostrar experiencia profesional de al menos <strong>6 meses</strong>.</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-12 text-center flex flex-col md:flex-row justify-center gap-4">
+                            <a href="#" class="inline-flex items-center justify-center px-8 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition" onclick="alert('Descargando PDF Convocatoria 2026...')"><i class="fas fa-file-pdf mr-2"></i> Convocatoria 2026</a>
+                            <a href="mailto:dconstruccion@uas.edu.mx" class="inline-flex items-center justify-center px-8 py-3 bg-green-600 text-white font-bold rounded-full shadow-lg hover:bg-green-700 transition"><i class="fas fa-envelope mr-2"></i> Solicitar Información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ======================= VISTA: PROFESORES (COMPLETA Y MEJORADA) ======================= -->
+    <div id="page-profesores" class="page-content page-transition hidden">
+        <div class="relative bg-gray-900 border-b border-gray-200 py-24 text-center overflow-hidden">
+            <!-- Imagen de Fondo para Profesores -->
+            <img src="profesores.jpg" class="absolute inset-0 w-full h-full object-cover opacity-30" alt="Investigadores" onerror="this.src='https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2000&auto=format&fit=crop'">
+            <div class="relative z-10 max-w-7xl mx-auto px-4">
+                <span class="text-uas-gold font-bold tracking-widest uppercase text-sm mb-3 block">Núcleo Académico</span>
+                <h1 class="font-heading text-4xl md:text-6xl font-extrabold text-white mb-6">Profesores e Investigación</h1>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+                    Núcleo de excelencia con <strong class="text-white">Referencia 005080</strong> ante el SNP de la SECIHTI, integrado por investigadores miembros del SNI.
+                </p>
+            </div>
+        </div>
+
+        <!-- LGAC Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="font-heading text-2xl font-bold text-center text-gray-900 mb-12">Líneas de Generación y Aplicación del Conocimiento (LGAC)</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- LGAC 1 -->
+                    <div class="bg-gray-50 p-8 rounded-xl border-t-4 border-blue-500 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-6 mx-auto"><i class="fas fa-water text-3xl"></i></div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">LGAC 1</h3>
+                        <p class="text-center text-gray-600">Infraestructura hídrica sostenible.</p>
+                    </div>
+                    <!-- LGAC 2 -->
+                    <div class="bg-gray-50 p-8 rounded-xl border-t-4 border-green-500 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6 mx-auto"><i class="fas fa-cubes text-3xl"></i></div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">LGAC 2</h3>
+                        <p class="text-center text-gray-600">Materiales y procesos de construcción sostenibles.</p>
+                    </div>
+                    <!-- LGAC 3 -->
+                    <div class="bg-gray-50 p-8 rounded-xl border-t-4 border-orange-500 hover:shadow-lg transition">
+                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mb-6 mx-auto"><i class="fas fa-project-diagram text-3xl"></i></div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-3">LGAC 3</h3>
+                        <p class="text-center text-gray-600">Optimización, evaluación y diseño de estructuras resilientes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Directorio Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="font-heading text-2xl font-bold text-center text-gray-900 mb-12">Directorio de Investigadores</h2>
+
+                <!-- Coordinador: Dr. Juan Bojórquez (Estructuras - Naranja) -->
+                <div class="max-w-3xl mx-auto mb-16">
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-orange-500 flex flex-col md:flex-row transform hover:-translate-y-1 transition duration-300">
+                        <div class="bg-orange-50 w-full md:w-1/3 flex items-center justify-center p-8">
+                            <img src="juan.jpg" class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover" alt="Dr. Juan Bojórquez" onerror="this.src='https://ui-avatars.com/api/?name=Juan+Bojorquez&background=f97316&color=fff&size=128&bold=true'">
+                        </div>
+                        <div class="p-8 w-full md:w-2/3 flex flex-col justify-center text-center md:text-left">
+                            <span class="text-orange-500 font-bold uppercase tracking-widest text-xs mb-1">Coordinador del Posgrado</span>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-1">Dr. Juan Bojórquez Mora</h3>
+                            <span class="text-sm text-gray-500 font-medium mb-3 block">LGAC: Estructuras Resilientes</span>
+                            <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                            </div>
+                            <button onclick="openModal('bojorquez')" class="bg-uas-blue text-white px-6 py-2 rounded-md hover:bg-opacity-90 transition w-full md:w-fit text-sm">
+                                <i class="fas fa-file-alt mr-2"></i> Ver Perfil 
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista Completa de Profesores -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- HIDRÁULICA (Azul) -->
+                    <!-- Profesor: Franco Ochoa -->
+                    <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition text-center border-t-4 border-t-blue-500 border-x border-b border-gray-100 group">
+                        <img src="cuauhtemoc.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-blue-50 group-hover:scale-105 transition object-cover" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=Cuauhtemoc+Franco&background=eff6ff&color=2563eb&size=128'">
+                        <h4 class="font-bold text-gray-800 text-sm mb-1">Dr. Cuauhtémoc Franco Ochoa</h4>
+                        <span class="text-xs text-blue-600 font-bold block mb-2 uppercase tracking-wide">LGAC: Hidráulica</span>
+                        <button onclick="openModal('franco')" class="bg-uas-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition text-xs mt-3 inline-block shadow-sm"> <i class="fas fa-file-alt mr-2"></i> Ver Perfil</button>
+                    </div>
+
+                    <!-- Profesor: Rentería Guevara -->
+                    <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition text-center border-t-4 border-t-blue-500 border-x border-b border-gray-100 group">
+                        <img src="sergio.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-blue-50 group-hover:scale-105 transition object-cover" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=Sergio+Renteria&background=eff6ff&color=2563eb&size=128'">
+                        <h4 class="font-bold text-gray-800 text-sm mb-1">Dr. Sergio Arturo Rentería Guevara</h4>
+                        <span class="text-xs text-blue-600 font-bold block mb-2 uppercase tracking-wide">LGAC: Hidráulica</span>
+                       	<button onclick="openModal('renteria')" class="bg-uas-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition text-xs mt-3 inline-block shadow-sm"> <i class="fas fa-file-alt mr-2"></i> Ver Perfil</button>
+                    </div>
+
+
+                    <!-- MATERIALES (Verde) -->
+                    <!-- Profesor: Baldenebro López -->
+                    <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition text-center border-t-4 border-green-500 border-x border-b border-gray-100 group">
+                        <img src="francisco.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-50 group-hover:scale-105 transition object-cover" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=Francisco+Baldenebro&background=f0fdf4&color=16a34a&size=128'">
+                        <h4 class="font-bold text-gray-800 text-sm mb-1">Dr. Francisco Javier Baldenebro López</h4>
+                        <span class="text-xs text-green-600 font-bold block mb-2 uppercase tracking-wide">LGAC: Materiales</span>
+                     	<button onclick="openModal('baldenebro')" class="bg-uas-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition text-xs mt-3 inline-block shadow-sm"> <i class="fas fa-file-alt mr-2"></i> Ver Perfil</button>
+                    </div>
+
+                    <!-- Profesor: Leal Graciano -->
+                    <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition text-center border-t-4 border-green-500 border-x border-b border-gray-100 group">
+                        <img src="jesus.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-50 group-hover:scale-105 transition object-cover" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=Jesus+Leal&background=f0fdf4&color=16a34a&size=128'">
+                        <h4 class="font-bold text-gray-800 text-sm mb-1">Dr. Jesús Martín Leal Graciano</h4>
+                        <span class="text-xs text-green-600 font-bold block mb-2 uppercase tracking-wide">LGAC: Materiales</span>
+                        <button onclick="openModal('leal')" class="bg-uas-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition text-xs mt-3 inline-block shadow-sm"> <i class="fas fa-file-alt mr-2"></i> Ver Perfil</button>
+                    </div>
+
+                    <!-- Profesor: Soto Félix -->
+                    <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition text-center border-t-4 border-green-500 border-x border-b border-gray-100 group">
+                        <img src="magnolia.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-50 group-hover:scale-105 transition object-cover" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=Magnolia+Soto&background=f0fdf4&color=16a34a&size=128'">
+                        <h4 class="font-bold text-gray-800 text-sm mb-1">Dra. Magnolia Soto Félix</h4>
+                        <span class="text-xs text-green-600 font-bold block mb-2 uppercase tracking-wide">LGAC: Materiales</span>
+                        <button onclick="openModal('soto')" class="bg-uas-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition text-xs mt-3 inline-block shadow-sm"> <i class="fas fa-file-alt mr-2"></i> Ver Perfil</button>
+                    </div>
+
+                    <!-- Profesor: Ávila Rubio -->
+                    <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition text-center border-t-4 border-green-500 border-x border-b border-gray-100 group">
+                        <img src="miguel.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-green-50 group-hover:scale-105 transition object-cover" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=Miguel+Avila&background=f0fdf4&color=16a34a&size=128'">
+                        <h4 class="font-bold text-gray-800 text-sm mb-1">Dr. Miguel Armando Ávila Rubio</h4>
+                        <span class="text-xs text-green-600 font-bold block mb-2 uppercase tracking-wide">LGAC: Materiales</span>
+                       	<button onclick="openModal('avila')" class="bg-uas-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition text-xs mt-3 inline-block shadow-sm"> <i class="fas fa-file-alt mr-2"></i> Ver Perfil</button>
+                    </div>
+
+
+                    <!-- ESTRUCTURAS (Naranja) -->
+                    <!-- Profesor: Valenzuela Beltrán -->
+                    <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition text-center border-t-4 border-orange-500 border-x border-b border-gray-100 group">
+                        <img src="federico.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-orange-50 group-hover:scale-105 transition object-cover" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=Federico+Valenzuela&background=fff7ed&color=ea580c&size=128'">
+                        <h4 class="font-bold text-gray-800 text-sm mb-1">Dr. Federico Valenzuela Beltrán</h4>
+                        <span class="text-xs text-orange-600 font-bold block mb-2 uppercase tracking-wide">LGAC: Estructuras</span>
+                        <button onclick="openModal('valenzuela')" class="bg-uas-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition text-xs mt-3 inline-block shadow-sm"> <i class="fas fa-file-alt mr-2"></i> Ver Perfil</button>
+                    </div>
+
+                    <!-- Profesor: Gaxiola Camacho -->
+                    <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition text-center border-t-4 border-orange-500 border-x border-b border-gray-100 group">
+                        <img src="jose.jpg" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-orange-50 group-hover:scale-105 transition object-cover" alt="Avatar" onerror="this.src='https://ui-avatars.com/api/?name=Jose+Gaxiola&background=fff7ed&color=ea580c&size=128'">
+                        <h4 class="font-bold text-gray-800 text-sm mb-1">Dr. José Ramón Gaxiola Camacho</h4>
+                        <span class="text-xs text-orange-600 font-bold block mb-2 uppercase tracking-wide">LGAC: Estructuras</span>
+                        <button onclick="openModal('gaxiola')" class="bg-uas-blue text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition text-xs mt-3 inline-block shadow-sm"> <i class="fas fa-file-alt mr-2"></i> Ver Perfil</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ======================= VISTA: VINCULACIÓN (NUEVA SECCIÓN) ======================= -->
+    <div id="page-vinculacion" class="page-content page-transition hidden">
+        <!-- MODIFICACIÓN: Encabezado idéntico a Maestría/Doctorado -->
+        <div class="bg-uas-blue text-white py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                <a href="#" onclick="showPage('home')" class="text-gray-300 hover:text-white text-sm mb-4 inline-block"><i class="fas fa-arrow-left mr-2"></i> Volver al Inicio</a>
+                <h1 class="font-heading text-3xl md:text-5xl font-bold">
+                    <span class="text-uas-gold">Vinculación</span> y Alianzas
+                </h1>
+                <p class="text-lg text-gray-200 mt-4 max-w-4xl leading-relaxed">
+                    Para elevar la calidad de la profesionalización e investigación, mantenemos una estrecha relación con los sectores productivo, gubernamental y académico a través de convenios que permiten el intercambio académico y estancias profesionales.
+                </p>
+            </div>
+        </div>
+
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Sector GUBERNAMENTAL -->
+                <div class="mb-16">
+                    <h3 class="font-heading text-2xl font-bold text-gray-800 mb-8 border-l-4 border-uas-blue pl-4">Sector Público y Gubernamental</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <!-- Conagua -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col items-center justify-center text-center hover:shadow-md transition h-40 border border-gray-100">
+                            <!-- MODIFICACIÓN: Uso de img -->
+                            <img src="conagua.svg" alt="CONAGUA" class="h-20 mb-3 object-contain hover:scale-105 transition" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Logotipo_Conagua.svg/1200px-Logotipo_Conagua.svg.png'">
+                            <span class="text-xs font-bold text-gray-600 uppercase mt-2">CONAGUA</span>
+                        </div>
+                        <!-- IMTA -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col items-center justify-center text-center hover:shadow-md transition h-40 border border-gray-100">
+                             <!-- MODIFICACIÓN: Uso de img -->
+                             <img src="imta.jpg" alt="IMTA" class="h-20 mb-3 object-contain hover:scale-105 transition" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_IMTA.svg/1200px-Logo_IMTA.svg.png'">
+                            <span class="text-xs font-bold text-gray-600 uppercase mt-2">IMTA</span>
+                        </div>
+                        <!-- INAH -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col items-center justify-center text-center hover:shadow-md transition h-40 border border-gray-100">
+                             <!-- MODIFICACIÓN: Uso de img -->
+                             <img src="inah.png" alt="INAH" class="h-20 mb-3 object-contain hover:scale-105 transition" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Instituto_Nacional_de_Antropolog%C3%ADa_e_Historia_%28logo%29.svg/1024px-Instituto_Nacional_de_Antropolog%C3%ADa_e_Historia_%28logo%29.svg.png'">
+                            <span class="text-xs font-bold text-gray-600 uppercase mt-2">INAH Sinaloa</span>
+                        </div>
+                        <!-- Ayuntamiento -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm flex flex-col items-center justify-center text-center hover:shadow-md transition h-40 border border-gray-100">
+                             <!-- MODIFICACIÓN: Uso de img -->
+                             <img src="ayuntamiento.jpg" alt="Ayuntamiento" class="h-20 mb-3 object-contain hover:scale-105 transition" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/2/28/Escudo_UAS_Buelna.png'">
+                            <span class="text-xs font-bold text-gray-600 uppercase mt-2">Ayuntamiento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sector PRODUCTIVO -->
+                <div class="mb-16">
+    <h3 class="font-heading text-2xl font-bold text-gray-800 mb-8 border-l-4 border-uas-gold pl-4">Sector Productivo</h3>
+                    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+    
+        <!-- 1. COPPEL -->
+        <div class="group aspect-square bg-white rounded-xl overflow-hidden flex items-center justify-center p-6 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 hover:scale-105">
+            <!-- Corregido: eliminados los corchetes extra en onerror -->
+            <img src="coppel.png" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition duration-500" alt="Coppel" onerror="this.src='https://via.placeholder.com/150?text=COPPEL'">
+        </div>
+
+        <!-- 2. MRM -->
+        <div class="group aspect-square bg-white rounded-xl overflow-hidden flex items-center justify-center p-6 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 hover:scale-105">
+            <img src="mrm.jpg" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition duration-500" alt="Construcciones MRM" onerror="this.src='https://via.placeholder.com/150?text=MRM'">
+        </div>
+
+        <!-- 3. PROCASA -->
+        <div class="group aspect-square bg-white rounded-xl overflow-hidden flex items-center justify-center p-6 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 hover:scale-105">
+            <img src="procasa.jpg" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition duration-500" alt="PROCASA" onerror="this.src='https://via.placeholder.com/150?text=PROCASA'">
+        </div>
+
+        <!-- 4. CONCRETTI -->
+        <div class="group aspect-square bg-white rounded-xl overflow-hidden flex items-center justify-center p-6 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 hover:scale-105">
+            <img src="concretti.png" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition duration-500" alt="CONCRETTI" onerror="this.src='https://via.placeholder.com/150?text=CONCRETTI'">
+        </div>
+
+        <!-- 5. GMARBO -->
+        <div class="group aspect-square bg-white rounded-xl overflow-hidden flex items-center justify-center p-6 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 hover:scale-105">
+            <img src="gmarbo.jpg" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition duration-500" alt="GMARBO" onerror="this.src='https://via.placeholder.com/150?text=GMARBO'">
+        </div>
+
+        <!-- 6. R3 ESTRUCTURAS -->
+        <div class="group aspect-square bg-white rounded-xl overflow-hidden flex items-center justify-center p-6 border border-gray-100 shadow-sm hover:shadow-md transition duration-300 hover:scale-105">
+            <img src="r3.jpg" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition duration-500" alt="R3 Estructuras" onerror="this.src='https://via.placeholder.com/150?text=R3'">
+        </div>
+
+    </div> <!-- ¡IMPORTANTE! Este div cierra la cuadrícula -->
+
+    <!-- Ahora el texto está fuera y se verá bien centrado abajo -->
+    <p class="text-center text-gray-500 mt-8 italic text-sm">Y más de 15 empresas líderes en el ramo de la construcción e infraestructura.</p>
+
+</div> <!-- Cierre del contenedor principal -->
+
+                <!-- Sector ACADÉMICO -->
+               <div class="mb-8">
+    <!-- Título actualizado -->
+    <h3 class="font-heading text-2xl font-bold text-gray-800 mb-8 border-l-4 border-green-600 pl-4">Redes de Investigación Nacionales e Internacionales</h3>
+    
+    <!-- Grid ajustado para 6 items -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- UNAM -->
+        <div class="group relative overflow-hidden rounded-xl shadow-lg h-48 bg-gray-900 flex items-center justify-center">
+            <img src="unam.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition duration-500" alt="UNAM">
+            <div class="relative z-10 text-center pointer-events-none">
+                <h4 class="text-white font-bold text-xl drop-shadow-md">UNAM</h4>
+                <span class="text-xs text-gray-200 block uppercase tracking-wider">México</span>
+            </div>
+        </div>
+
+        <!-- UANL -->
+        <div class="group relative overflow-hidden rounded-xl shadow-lg h-48 bg-gray-900 flex items-center justify-center">
+            <img src="uanl.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition duration-500" alt="UANL" onerror="this.src='https://www.uanl.mx/wp-content/uploads/2019/06/rectoria-uanl.jpg'">
+            <div class="relative z-10 text-center pointer-events-none">
+                <h4 class="text-white font-bold text-xl drop-shadow-md">UANL</h4>
+                <span class="text-xs text-gray-200 block uppercase tracking-wider">Nuevo León, Mx</span>
+            </div>
+        </div>
+
+         <!-- UABC -->
+         <div class="group relative overflow-hidden rounded-xl shadow-lg h-48 bg-gray-900 flex items-center justify-center">
+            <img src="uabc.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition duration-500" alt="UABC" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/3/30/UABC_Mexicali.jpg'">
+            <div class="relative z-10 text-center pointer-events-none">
+                <h4 class="text-white font-bold text-xl drop-shadow-md">UABC</h4>
+                <span class="text-xs text-gray-200 block uppercase tracking-wider">Baja California, Mx</span>
+            </div>
+        </div>
+
+        <!-- UPC -->
+        <div class="group relative overflow-hidden rounded-xl shadow-lg h-48 bg-gray-900 flex items-center justify-center">
+            <img src="upm.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition duration-500" alt="UPC">
+            <div class="relative z-10 text-center pointer-events-none">
+                <h4 class="text-white font-bold text-xl drop-shadow-md">UPM Madrid</h4>
+                <span class="text-xs text-gray-200 block uppercase tracking-wider">España</span>
+            </div>
+        </div>
+
+        <!-- Arizona -->
+        <div class="group relative overflow-hidden rounded-xl shadow-lg h-48 bg-gray-900 flex items-center justify-center">
+            <img src="arizona.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition duration-500" alt="Arizona">
+            <div class="relative z-10 text-center pointer-events-none">
+                <h4 class="text-white font-bold text-xl drop-shadow-md">U. de Arizona</h4>
+                <span class="text-xs text-gray-200 block uppercase tracking-wider">EE.UU.</span>
+            </div>
+        </div>
+
+        <!-- Tokyo -->
+        <div class="group relative overflow-hidden rounded-xl shadow-lg h-48 bg-gray-900 flex items-center justify-center">
+            <img src="tokyo.jpg" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition duration-500" alt="Nagaoka">
+            <div class="relative z-10 text-center pointer-events-none">
+                <h4 class="text-white font-bold text-xl drop-shadow-md">Tokyo Univ.</h4>
+                <span class="text-xs text-gray-200 block uppercase tracking-wider">Japón</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div> <!-- Cierra el contenedor de ancho máximo (max-w-7xl) -->
+    </div> <!-- Cierra el fondo oscuro general (bg-gray-900) -->
+</div> <!-- Cierra la página completa de Vinculación (id="page-vinculacion") -->
+
+
+
+    <!-- 6. FOOTER COMPARTIDO -->
+    <footer id="contacto" class="bg-gray-900 text-gray-300 border-t-4 border-uas-gold mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-4 uppercase">Facultad de Ingeniería</h4>
+                    <p class="text-sm text-gray-400">Universidad Autónoma de Sinaloa</p>
+                    <p class="text-xs mt-4 text-gray-500">Calzada de las Américas y Blvd. Universitarios S/N, Culiacán, Sinaloa.</p>
+                </div>
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-4 uppercase">Contacto</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><strong class="text-uas-gold">Maestría:</strong> <a href="mailto:mconstruccion@uas.edu.mx" class="hover:text-white">mconstruccion@uas.edu.mx</a></li>
+                        <li><strong class="text-uas-gold">Doctorado:</strong> <a href="mailto:dconstruccion@uas.edu.mx" class="hover:text-white">dconstruccion@uas.edu.mx</a></li>
+                    </ul>
+                </div>
+                <div class="flex flex-col items-center md:items-end">
+                    <h4 class="text-white text-sm font-bold mb-3 uppercase">Redes Sociales</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-black py-4 text-center text-xs text-gray-600">
+            &copy; 2026 Posgrado en Ingeniería de la Construcción UAS.
+        </div>
+    </footer>
+
+    <!-- MODAL PROFESORES -->
+    <div id="modal-profesor" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Overlay -->
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" onclick="closeModal()"></div>
+
+        <!-- Panel -->
+        <!-- MODIFICADO: cambiado sm:max-w-4xl a sm:max-w-6xl para hacerlo más rectangular/ancho en desktop -->
+        <div class="flex items-center justify-center min-h-screen p-4 text-center sm:p-0">
+            <div class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-6xl sm:w-full">
+                <!-- Close Button -->
+                <div class="absolute top-0 right-0 pt-4 pr-4 z-10">
+                    <button type="button" onclick="closeModal()" class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i class="fas fa-times text-2xl"></i>
+                    </button>
+                </div>
+                <!-- Content Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3">
+                    <!-- Image Side (Left) -->
+                    <div class="md:col-span-1 bg-gray-100 relative h-72 md:h-auto">
+                        <img id="modal-img" src="" class="absolute inset-0 w-full h-full object-cover" alt="Foto Profesor">
+                    </div>
+                    <!-- Info Side (Right) -->
+                    <div class="md:col-span-2 p-6 md:p-8 max-h-[80vh] overflow-y-auto custom-scrollbar">
+                         <h3 id="modal-name" class="font-heading text-2xl font-bold text-gray-900 mb-1"></h3>
+                         <p id="modal-role" class="text-xs text-uas-blue font-bold uppercase tracking-widest mb-4"></p>
+                         
+                         <div class="space-y-5">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm border-b border-gray-200 pb-1 mb-2">Semblanza</h4>
+                                <p id="modal-bio" class="text-sm text-gray-600 leading-relaxed"></p>
+                            </div>
+
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm border-b border-gray-200 pb-1 mb-2">Formación Académica</h4>
+                                <ul id="modal-education" class="list-disc list-inside text-sm text-gray-600 space-y-1"></ul>
+                            </div>
+
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm border-b border-gray-200 pb-1 mb-2">Proyectos Vigentes</h4>
+                                <!-- MODIFICADO: Cambiado de <p> a <ul> para lista con bullets -->
+                                <ul id="modal-projects" class="list-disc list-inside text-sm text-gray-600 space-y-1"></ul>
+                            </div>
+
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm border-b border-gray-200 pb-1 mb-2">Publicaciones Destacadas</h4>
+                                <ul id="modal-publications" class="list-disc list-inside text-sm text-gray-600 space-y-1"></ul>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                                <div class="bg-gray-50 p-3 rounded border border-gray-100">
+                                    <h4 class="font-bold text-gray-800 text-xs uppercase mb-1">Distinciones</h4>
+                                    <p id="modal-distinctions" class="text-sm text-uas-gold font-bold"></p>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded border border-gray-100">
+                                    <h4 class="font-bold text-gray-800 text-xs uppercase mb-1">Contacto Directo y CVU</h4>
+                                    <p id="modal-contact" class="text-sm text-gray-600"></p>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE NAVEGACIÓN Y TABS -->
+    <script>
+        // Función principal de navegación de "Páginas"
+        function showPage(pageId) {
+            // 1. Ocultar todas las páginas
+            const pages = document.getElementsByClassName('page-content');
+            for (let i = 0; i < pages.length; i++) {
+                pages[i].classList.add('hidden');
+            }
+
+            // 2. Desactivar estilo activo de Nav
+            const navLinks = document.getElementsByClassName('nav-link');
+            for (let i = 0; i < navLinks.length; i++) {
+                navLinks[i].classList.remove('active');
+            }
+
+            // 3. Mostrar la página seleccionada
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                // Reiniciar animación
+                targetPage.classList.remove('page-transition');
+                void targetPage.offsetWidth; // trigger reflow
+                targetPage.classList.add('page-transition');
+            }
+
+            // 4. Activar enlace del nav
+            const activeLink = document.getElementById('nav-' + pageId);
+            if (activeLink) activeLink.classList.add('active');
+
+            // 5. Scroll al top
+            window.scrollTo(0, 0);
+
+            // 6. Cerrar menú móvil si está abierto
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Función de Tabs Internas (Contenido dentro de Maestría/Doctorado)
+        function openTab(evt, tabName, group) {
+            var i, tabcontent, tablinks;
+            
+            const container = document.getElementById(group + '-content');
+            tabcontent = container.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            const btnContainer = evt.currentTarget.parentNode;
+            tablinks = btnContainer.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // ============================================
+        // LÓGICA DEL MODAL DE PROFESORES
+        // ============================================
+
+        // Datos simulados de los profesores
+        // MODIFICADO: 'projects' ahora es un Array [] en lugar de string para permitir lista
+        const professorsData = {
+            'bojorquez': {
+                name: "Dr. Juan Bojórquez Mora",
+                role: "Coordinador del Posgrado / Profesor-Investigador Titular C",
+                image: "juan.jpg", 
+                fallback: "https://ui-avatars.com/api/?name=Juan+Bojorquez&background=f97316&color=fff&size=500&bold=true",
+                bio: "Profesor e Investigador de Tiempo Completo en la Facultad de Ingeniería Culiacán (UAS). Especialista en ingeniería sísmica, confiabilidad estructural y optimización de estructuras mediante inteligencia artificial y vibe coding. Perfil PRODEP y miembro del Cuerpo Académico Consolidado (Estructuras y Mecánica Básica). Editor invitado de varias revistas JCR. Además de ser miembro del Comité Sísmico Sinaloense.",
+                education: [
+                    "Doctorado en Ingeniería, Universidad Nacional Autónoma de México (UNAM), 2016.",
+                    "Maestría en Ciencias de la Ingeniería, Universidad Nacional Autónoma de México (UNAM), 2012.",
+                    "Licenciatura en Ingeniería Civil, Universidad Autónoma de Sinaloa (UAS), 2009."
+                ],
+                // MODIFICADO: Convertido a array
+                projects: [
+                    "Uso de Inteligencia Artificial para la optimización y diseño estructural.",
+                    "Evaluación del efecto de la corrosión en el desempeño sísmico de edificios de concreto reforzado.",
+                    "Estimación de resiliencia y diseño sísmico resiliente de edificaciones."
+                ],
+                publications: [
+                    "Structural Reliability Assessment of Dual RC Buildings for Different Shear Wall Configuration. (Buildings, 2025).",
+                    "Structural reliability of reinforced concrete buildings under earthquakes and corrosion effects. Engineering Structures, 237:112161. (2021)",
+                    "Reliability based optimal load factors for seismic design of buildings. Engineering Structures, 151: 527–539. (2017)"
+                ],
+                distinctions: "• SNII Nivel 1 <br> • Miembro del Comité Sísmico Sinaloense <br> • Miembro Honorífico del Sistema Sinaloense de Investigadores y Tecnólogos. <br> • Mejor Tesis de Doctorado por la Sociedad Mexicana de Ingeniería Sísmica (SMIS) en 2016. <br> • Tutor de la Mejor Tesis de Maestría otorgado por la Sociedad Mexicana de Ingeniería Sísmica (SMIS) en (2021).",
+                contact: " juanbm@uas.edu.mx <br> <a href='https://scholar.google.com/citations?user=h6wjlhcAAAAJ&hl=es' target='_blank' class='text-blue-600 hover:underline'>Ver Perfil Google Scholar</a>"
+            },
+            'franco': {
+                name: "Dr. Cuauhtémoc Franco Ochoa",
+                role: "Profesor Investigador Titular",
+                image: "cuauhtemoc.jpg",
+                fallback: "https://ui-avatars.com/api/?name=Cuauhtemoc+Franco&background=eff6ff&color=2563eb&size=500",
+                bio: "Especialista en modelación hidrológica y gestión de recursos hídricos. Enfocado en soluciones sostenibles para cuencas áridas.",
+                education: [
+                    "Doctorado en Ingeniería Hidráulica, UNAM.",
+                    "Maestría en Recursos Hídricos, Universidad de Arizona."
+                ],
+                // MODIFICADO: Convertido a array
+                projects: [
+                    "Modelación del impacto del cambio climático en la disponibilidad hídrica de la cuenca del río Culiacán."
+                ],
+                publications: [
+                    "Hydrological modeling of semi-arid basins.",
+                    "Sustainable water management in agricultural valleys."
+                ],
+                distinctions:  "• SNI Nivel 1 <br> • Perfil PRODEP <br> • Premio Estatal de Ciencia",
+                contact: "cfranco@uas.edu.mx"
+            },
+            'renteria': {
+                name: "Dr. Sergio Arturo Rentería Guevara",
+                role: "Profesor e Investigador Titular C",
+                image: "sergio.jpg",
+                fallback: "https://ui-avatars.com/api/?name=Sergio+Renteria&background=eff6ff&color=2563eb&size=500",
+                bio: 'Posee una amplia trayectoria en el sector hídrico, donde desempeñó roles clave en la Comisión Nacional del Agua a nivel estatal, regional y nacional, como especialista en hidráulica, coordinador regional de asuntos técnicos e innovación, jefe de proyecto nacional de aguas superficiales y subgerente nacional de implantación y seguimiento. Es egresado con máximo promedio de su generación en ingeniería mecánica por el Instituto Tecnológico de Culiacán, realizó una maestría en hidrología e hidráulica en Purdue University (EE.UU.) y un doctorado en ciencias de la ingeniería con especialidad en bioprocesos y sistemas ambientales por el Tecnológico Nacional de México. Actualmente es profesor e investigador titular en la Facultad de Ingeniería Culiacán, miembro del Sistema Nacional de Investigadores y del Sistema Sinaloense de Investigadores y Tecnólogos, y preside la Asociación Mexicana de Hidráulica, sección Sinaloa.',
+                education: [
+                    "Doctorado en Ciencias de la Ingeniería, Tecnológico Nacional de México, 2021.",
+                    "Maestría en Ciencias de la Ingeniería, Purdue University (EE.UU.), 1993.",
+                    "Licenciatura en Ingeniería Mecánica, Instituto Tecnológico de Culiacán, 1990."
+                ],
+                // MODIFICADO: Proyecto vigente actualizado
+                projects: [
+                    "Propuesta de un sistema de medición de gasto pluvial en vialidades urbanas de Culiacán, Sinaloa."
+                ],
+                publications: [
+                    "Flood risk analysis for Culiacan River infrastructure development using HEC-RAS. Journal of Applied Water Engineering and Research, 2026.",
+                    "92-year meteorological datasets from 50 meteorological stations in Sinaloa, Mexico. Data in Brief, 2025.",
+                    "Selecting criteria for urban basin delineation based on UAV photogrammetry: a case study in Culiacan, Mexico. Hydrology Research, 2023."
+                ],
+                distinctions: "• Presidente de la Asociación Mexicana de Hidráulica, Sección Sinaloa (2025-2027). <br> • Miembro del Sistema Nacional de Investigadores (SNII) Nivel 1. <br> • Reconocimiento 'Divulgador de Ciencia Titular', CONFIE. <br> • Premio Eustaquio Buelna a la mejor tesis de posgrado 2024. <br> • Profesor con perfil deseable PRODEP (SEP).",
+                contact: "sergiorenteria@uas.edu.mx <br> <a href='https://scholar.google.com/citations?hl=es&user=KVSh_UkAAAAJ' target='_blank'>Ver Perfil Google Scholar</a>"
+            },
+            'baldenebro': {
+                name: "Dr. Francisco Javier Baldenebro López",
+                role: "Profesor Investigador Titular",
+                image: "francisco.jpg",
+                fallback: "https://ui-avatars.com/api/?name=Francisco+Baldenebro&background=f0fdf4&color=16a34a&size=500",
+                bio: "Especialista en tecnología del concreto y materiales sustentables. Estudia el uso de materiales reciclados en la construcción.",
+                education: [
+                    "Doctorado en Ciencias de los Materiales, CIMAV.",
+                    "Maestría en Construcción, UAS."
+                ],
+                // MODIFICADO: Convertido a array
+                projects: [
+                    "Uso de cenizas volantes y escorias para la producción de concretos ecológicos de alta resistencia."
+                ],
+                publications: [
+                    "Mechanical properties of recycled aggregate concrete.",
+                    "Durability of concrete with supplementary cementitious materials."
+                ],
+                distinctions:  "• SNI Nivel 1 <br> • Perfil PRODEP <br> • Premio Estatal de Ciencia",
+                contact: "fbaldenebro@uas.edu.mx"
+            },
+            'leal': {
+                name: "Dr. Jesús Martín Leal Graciano",
+                role: "Profesor-Investigador de Tiempo Completo - Titular C",
+                image: "jesus.jpg",
+                fallback: "https://ui-avatars.com/api/?name=Jesus+Leal&background=f0fdf4&color=16a34a&size=500",
+                bio: "Doctor en Ingeniería Civil con acentuación en Estructuras por la Universidad Nacional Autónoma de México (UNAM). Producto de sus estudios, ha publicado artículos en revista internacionales de alto impacto, indexada en el Journal Citation Reports y en memorias de congresos nacionales e internacionales de ingeniería, además de su participación como ponente en dichos eventos. Es docente en la Facultad de Ingeniería de la UAS desde el año 2015 a la fecha, impartiendo cursos en nivel licenciatura y posgrado. Ha participado como Responsable Técnico y colaborador en proyectos de investigación internos, así como proyectos financiados por instituciones externas, lo cual le ha permitido dirigir tesis de licenciatura y maestría. Como resultado de sus actividades de investigación, es distinguido como miembro del Sistema Nacional de Investigadores (Nivel I) y miembro honorifico del Sistema Sinaloense de Investigadores y Tecnólogos. En el ámbito profesional, se desempeña en el cálculo y el diseño estructural, participando en diversas obras en el estado de Sinaloa. Actualmente es miembro del Colegio de Ingenieros Civiles de Sinaloa (CICSAC) y de la Sociedad Mexicana de Ingeniería Estructural (SMIE). Cuenta con licencias como Director responsable de obra y Corresponsable Estructural del municipio de Culiacán. ",
+                education: [
+                    "Doctorado en Ingeniería, Universidad Nacional Autónoma de México, 2018.",
+                    "Maestría en Ciencias de la Ingeniería, Universidad Autónoma de Sinaloa, 2013.",
+                    "Licenciatura en Ingeniería Civil, Universidad Autónoma de Sinaloa, 2010."
+                ],
+                // MODIFICADO: Convertido a array
+                projects: [
+                    "Evaluación del comportamiento histerético de muros de block con refuerzo diagonal."
+                ],
+                publications: [
+                   "Effects of concrete masonry infill walls with and without joint reinforcement on the cyclic behavior of RC frames. Structures; 79, 109666, 2025.",
+				   "Use of GFRP as retrofit alternative for confined masonry walls with window opening subjected to in-plane lateral load. Engineering Structures; 223, 111148, 2020.",
+                   "Experimental Study of Infill Walls with Joint Reinforcement Subjected to In-Plane Lateral Load. Buildings; 12(3): 259–259, 2022." 
+                ],
+                distinctions:  "• SNI Nivel 1 <br> • Perfil PRODEP <br> • Premio Estatal de Ciencia",
+                contact: "jesusleal@uas.edu.mx  <br> <a href='https://scholar.google.com/citations?hl=es&user=yHW_QmsAAAAJ'>Ver Perfil Google Scholar</a>"
+            },
+            'soto': {
+                name: "Dra. Magnolia Soto Félix",
+                role: "Profesora-Investigadora Titular C",
+                image: "magnolia.jpg",
+                fallback: "https://ui-avatars.com/api/?name=Magnolia+Soto&background=f0fdf4&color=16a34a&size=500",
+                bio: "Profesora e Investigadora de Tiempo Completo en la Facultad de Ingeniería Culiacán (UAS). Especialista en ciencias de materiales. Perfil PRODEP y miembro del Cuerpo Académico Consolidado (Diseño, Evaluación de Comportamiento, y Rehabilitación de Estructuras). Revisora de revistas JCR. ",
+                education: [
+                    "Doctorado en Ciencias de la Ingeniería, Universidad Autónoma de Sinaloa, 2021.",
+                    "Maestría en Ingeniería (Construcción), Universidad Nacional Autónoma de México, 2008.",
+                    "Licenciatura en Ingeniería Civil, Universidad Autónoma de Sinaloa, 2006."
+                ],
+                // MODIFICADO: Convertido a array
+                projects: [
+                    "Diseño y optimización de morteros ecológicos con materiales naturales."
+                ],
+                publications: [
+                   "Sustainable Low-Carbon Cement: Performance Enhancement with Calcined Natural Pozzolans Through Compressive Strength, Porosity, and Microstructural Analysis, Materials 18 (8), 1776, 2025",
+				   "Improving Durability and Compressive Strength of Concrete with Rhyolite Aggregates and Recycled Supplementary Cementitious Materials. Materials, 15 (13), 2257, 2025.",
+                   "Hybrid cements with ZnO additions: hydration, compressive strength and microstructure. Molecules, 27 (4), 1278, 2022." 
+                ],
+                distinctions:  "• SNI Nivel I <br> • Perfil PRODEP <br> • Miembro Honorífico del Sistema Sinaloense de Investigadores y Tecnólogos <br> • Directora de la Mejor Tesis de maestría otorgado por la Coordinación General para el Fomento a la Investigación Científica e Innovación del Estado de Sinaloa (CONFIE), 2025. ",
+                contact: "msotofelix@uas.edu.mx <br> <a href='https://scholar.google.com/citations?user=A5cgEBwAAAAJ&hl=es'>Ver Perfil Google Scholar</a>"
+            },
+            'avila': {
+                name: "Dr. Miguel Armando Ávila Rubio",
+                role: "Profesor-Investigador (Facultad de Ingeniería Mochis)",
+                image: "miguel.jpg",
+                fallback: "https://ui-avatars.com/api/?name=Miguel+Avila&background=f0fdf4&color=16a34a&size=500",
+                bio: 'Desarrollo y producción científica en el área de la ciencia y tecnología de materiales. Actualmente profesor e Investigador de la Facultad de Ingeniería Mochis (FIM-UAS). Es miembro honorífico del Sistema Sinaloense de Investigadores y Tecnólogos y forma parte del Sistema Nacional de Investigadoras e Investigadores nivel 1. También es miembro del claustro académico del Posgrado en Ingeniería de la Construcción de la Facultad de Ingeniería Culiacán.',
+                education: [
+                    "Doctorado en Ciencias de la Ingeniería, Universidad Autónoma de Sinaloa, 2022.",
+                    "Maestría en Ciencias de la Ingeniería, Universidad Autónoma de Sinaloa, 2017.",
+                    "Licenciatura en Ingeniería Civil, Universidad Autónoma de Sinaloa, 2015."
+                ],
+                // MODIFICADO: Lista de proyectos actualizada
+                projects: [
+                    "Ciencia y tecnología de materiales aplicados a la construcción.",
+                    "Desarrollo de cementos sustentables de bajo carbono.",
+                            ],
+                publications: [
+                    "Correlation between copper speciation and thermal behavior in zeolite 4A. Materials Chemistry and Physics, 2026.",
+                    "Synthesis of rod-like ZrB2 under concentrated solar radiation. Materials Research Express, 2026.",
+                    "Sustainable Low-Carbon Cement: Performance Enhancement with Calcined Natural Pozzolans. Materials, 2025."
+                ],
+                distinctions: "• Miembro del Sistema Nacional de Investigadores (SNII) Nivel I. <br> • Miembro Honorífico del Sistema Sinaloense de Investigadores y Tecnólogos.",
+                contact: "miguel.avila@uas.edu.mx <br> <a href='https://scholar.google.com/citations?user=6YUsrOMAAAAJ&hl=es' target='_blank'>Ver Perfil Google Scholar</a>"
+            },
+            'valenzuela': {
+                name: "Dr. Federico Valenzuela Beltrán",
+                role: "Profesor-Investigador Titular B",
+                image: "federico.jpg",
+                fallback: "https://ui-avatars.com/api/?name=Federico+Valenzuela&background=fff7ed&color=ea580c&size=500",
+                bio: "Profesor e Investigador de Tiempo Completo en la Facultad de Ingeniería Culiacán (UAS). Especialista en ingeniería estructural y sísmica, confiabilidad estructural y diseño sísmico basado en desempeño. Es miembro del Sistema Nacional de Investigadores, cuenta con perfil deseable PRODEP y es miembro del Cuerpo Académico Consolidado (Diseño, evaluación y rehabilitación de estructuras). Participa como miembro activo de varias sociedades civiles, entre ellas el Colegio de Ingenieros Civiles de Sinaloa, la Sociedad Mexicana de Ingeniería Estructural y el Comité Sísmico Sinaloense. Ha colaborado en la autoría de más de 40 artículos en revistas científicas, así como en memorias de congresos nacionales e internacionales.",
+                education: [
+                    "Doctorado en Ingeniería, Universidad Nacional Autónoma de México (UNAM), 2018.",
+					"Maestría en Ciencias de la Ingeniería, Universidad Autónoma de Sinaloa (UAS), 2013.",
+					"Licenciatura en Ingeniería Civil, Universidad Autónoma de Sinaloa (UAS), 2011."
+                ],
+                // MODIFICADO: Convertido a array
+                projects: [
+                    "Diseño sísmico de estructuras con disipadores de energía.",
+                    "Evaluación del desempeño sísmico y pérdidas económicas esperadas en estructuras diseñadas con la normativa mexicana actual."
+                ],
+                publications: [
+                    "Seismic performance and expected economic losses of dual MRF RC buildings with buckling-restrained braces using FEMA P-58. Structures, 2025.",
+					"Seismic loss assessment of code-compliant moment-resisting RC buildings located on different soil conditions of Mexico City. Engineering Structures, 2024.",
+                    "BRB retrofit of mid-rise soft-first-story RC moment-frame buildings with masonry infill in upper stories. Journal of Building Engineering, 2021."  
+                ],
+                distinctions:  "• (SNII) Nivel 1. <br> • Miembro del Comité Sísmico Sinaloense <br> • Miembro Honorífico del Sistema Sinaloense de Investigadores y Tecnólogos. <br> • Miembro del Comité para la elaboración de ejemplos de diseño de las nuevas NTC para Diseño por Sismo de la Ciudad de México (2023). <br> • Vocal de la Mesa Directiva de la Sociedad Mexicana de Ingeniería Sísmica (SMIS) durante el bienio 2016-2017.",
+                contact: "fvalenzuelab@uas.edu.mx <br> <a href='https://scholar.google.com/citations?hl=es&user=wdW_-bgAAAAJ&view_op=list_works&sortby=pubdate'>Ver Perfil Google Scholar</a>"
+            },
+            'gaxiola': {
+                name: "Dr. José Ramón Gaxiola Camacho",
+                role: "Profesor-Investigador Titular C",
+                image: "jose.jpg",
+                fallback: "https://ui-avatars.com/api/?name=Jose+Gaxiola&background=fff7ed&color=ea580c&size=500",
+                bio: "Realiza investigación en el área de riesgo, vulnerabilidad, resiliencia, y confiabilidad de edificios, puentes, presas, y carreteras. Es Ingeniero Civil por la Universidad Autónoma de Sinaloa, y Maestro y Doctor, en Ingeniería Civil y Mecánica, por la Universidad de Arizona en Estados Unidos. Es miembro del SNII Nivel 2 de la SECIHTI. Cuenta con múltiples artículos científicos en revistas internacionales, un libro de texto, participaciones en congresos internacionales, y capítulos de libros. Colabora con institutos de investigación y universidades internacionales. Es miembro de la Sociedad de Ingenieros Civiles de Estados Unidos (ASCE), de la Sociedad Mexicana de Ingeniería Estructural (SMIE), y del Colegio de Ingenieros Civiles de Sinaloa A.C. (CICSAC). Es líder de un Cuerpo Académico consolidado. Por último, forma parte del cuerpo de Editores de la revista internacional Discover Civil Engineering y Applied Sciences.",
+                education: [
+                    "Doctorado en Ingeniería Civil y Mecánica, Universidad de Arizona, 2017.",
+					"Maestría en Ingeniería Civil y Mecánica, Universidad de Arizona, 2015.",
+                    "Licenciatura en Ingeniería Civil, Universidad Autónoma de Sinaloa, 2012."
+                ],
+                // MODIFICADO: Convertido a array
+                projects: [
+                    "Desarrollo e implementación de metodología alternativa para el cálculo de confiabilidad estructural de edificios sometidos a terremotos considerando niveles de desempeño.",
+                    "Evaluación de la Seguridad Estructural del Puente Juárez Localizado en la Ciudad de Culiacán, Sinaloa, México."
+                ],
+                publications: [
+                    "A novel reliability technique for implementation of performance-based seismic design of structures. Engineering Structures, 142, 137-147. (2017)",
+					"GPS, accelerometer, and smartphone fused smart sensor for SHM on real‐scale bridges. Advances in Civil Engineering, 2019(1), 6429430. (2019)",
+                    "Structural evaluation of dynamic and semi-static displacements of the Juarez Bridge using GPS technology. Measurement, 110, 146-153. (2017)"  
+                ],
+                distinctions:  "• (SNII) Nivel 2. <br> • Miembro del Comité Sísmico Sinaloense <br> • Miembro Honorífico del Sistema Sinaloense de Investigadores y Tecnólogos. <br> • Exalumno Distinguido. Universidad de Arizona (2025) <br> • Ingeniero Civil del Año 2023. Colegio de Ingenieros Civiles de Sinaloa A.C.",
+                contact: "jrgaxiola@uas.edu.mx <br> <a href='https://sites.google.com/uas.edu.mx/profjramongaxiola-camacho'>Ver Perfil Google Scholar</a>"
+            }
+        };
+
+        function openModal(profesorId) {
+            const data = professorsData[profesorId];
+            if (!data) return;
+
+            // Llenar datos
+            document.getElementById('modal-name').textContent = data.name;
+            document.getElementById('modal-role').textContent = data.role;
+            document.getElementById('modal-bio').textContent = data.bio;
+            // document.getElementById('modal-projects').textContent = data.projects; // ELIMINADO: era para texto simple
+            document.getElementById('modal-distinctions').innerHTML = data.distinctions;
+            document.getElementById('modal-contact').innerHTML = data.contact;
+
+            // Imagen con fallback
+            const imgElement = document.getElementById('modal-img');
+            imgElement.src = data.image;
+            imgElement.onerror = function() {
+                this.src = data.fallback;
+            };
+
+            // Listas (Educación)
+            const eduList = document.getElementById('modal-education');
+            eduList.innerHTML = '';
+            data.education.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                eduList.appendChild(li);
+            });
+
+             // MODIFICADO: Listas (Proyectos Vigentes) - Ahora itera como array
+             const projList = document.getElementById('modal-projects');
+             projList.innerHTML = '';
+             data.projects.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                projList.appendChild(li);
+            });
+
+            // Listas (Publicaciones)
+            const pubList = document.getElementById('modal-publications');
+            pubList.innerHTML = '';
+            data.publications.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                pubList.appendChild(li);
+            });
+
+            // Mostrar modal
+            document.getElementById('modal-profesor').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-profesor').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
